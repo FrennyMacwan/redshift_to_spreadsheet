@@ -14,9 +14,9 @@ def write_googlesheet(df, spreadsheet_key, sheet_title, starting_cell, overwrite
 
 if __name__ == "__main__":
 
-    engine = create_engine('postgresql://frenny:BWhKx79Beyna4tLG@redshift-cluster-1.czcigf1qnvhe.eu-central-1.redshift.amazonaws.com:5439/dwh')
-    data_frame = pd.read_sql('SELECT * FROM tgt_dev.purchase_prod;', engine)
+    engine = create_engine('postgresql://user:password@host:5439/database')
+    data_frame = pd.read_sql('SELECT * FROM article_sales;', engine)
     print(data_frame)
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('test-rebike-ca858a6200ac.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secretkey.json', scope)
     client = gspread.authorize(credentials)
     write_googlesheet(data_frame, '1MogvCK7mTPYv2Mmeapyq_D3hnOvlSynfUyADEBpL3F8', 'Sheet1', 'A1', True)
